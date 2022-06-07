@@ -31,8 +31,9 @@ GSS <- droplevels(GSS)
 mydata <- select(GSS,race,age,eatout)
 mydata <- na.omit(mydata)
 ```
-
-
+  
+### Graphical Results  
+  
 ```{r}
 barchartGC(~race + eatout,data=mydata)
 barchartGC(~race + eatout,data=mydata, type="percent")
@@ -41,6 +42,7 @@ barchartGC(~race + eatout,data=mydata, type="percent")
   
 Based on the frequency table above, which shows the volume of people who eat out and people who do not eat out for each racial group, we can see that about 950 white people eat out while about 200 do not. Meanwhile, about 200 black people eat out while about 100 do not. For the other racial groups, about 100 people eat out while about 50 do not. Putting this into percentages,80% of white people eat out while 20% do not. Meanwhile black and others have about the same percentages with 70% of the people eat out while 30% do not.    
   
+### Numerical Results    
   
 ```{r}
 table1 <- xtabs(~race + eatout,data=mydata)
@@ -49,7 +51,9 @@ colPerc(table1)
 ```
     
 The numerical summary above shows the actual values of the percentages of people who eat out and do not eat out for each racial groups. The data above confirms the estimations from the graphical results, and it shows that for white people, 83.13% eat out and 16.87% do not. Similar to the observations made previously, black people and others have a similar ratio of about 70% of people who eat out while 30% of people who do not. Furthermore, the table above shows that white people make up the majority of people who claim that they eat out. Specifically, among the people answered yes to eating out, 81.69% were white people while 11.83% were black and 6.48% were others. 
-  
+   
+   
+### Inferential Results 
   
 ```{r}
 chisq.test(table1)
@@ -63,8 +67,8 @@ Based on the Chi-squared test above, the p-value determined is a small number wh
 fisherXY(mydata$race,mydata$eatout, printAll = TRUE)
 ```
   
-Fisher's Exact Test is conducted to supplement the results of the Chi-squared test from before. Based on this test, which compared two groups at a time, we can see that the there is a difference in terms of the frequency of eating out between white and black people as shown by the the low p-value of about 1.183e-05. Likewise, the frequency of eating out between white people and others is also difference based on the low p-value of 0.00721. However, this test also shows that there is no difference between the frequency of eating out of black people and others given that the p-value is 0.599.
-
-
-
-
+Fisher's Exact Test is conducted to supplement the results of the Chi-squared test from before. Based on this test, which compared two groups at a time, we can see that the there is a difference in terms of the frequency of eating out between white and black people as shown by the the low p-value of about 1.183e-05. Likewise, the frequency of eating out between white people and others is also difference based on the low p-value of 0.00721. However, this test also shows that there is no difference between the frequency of eating out of black people and others given that the p-value is 0.599.  
+  
+  
+### Discussion and Conclusion  
+The question being answered in this activity is whether there is a difference in the frequency of eating out of various racial groups. The first test conducted is plotting a barplot of the data, and the estimated values show that there is a difference in the frequency of eating out among the groups. This is further confirmed by the numerical results which showed that actual values in terms of percentages of people who eat out and do not eat out for each group. Lastly, the Chi-squared test and the Fisher's Exact test confirmed that there is a difference in terms of the frequency of eating out between white and black people and white people and others. However, it also claims that there is not difference in the data for black people and others. Overall, we can reject the null hypothesis and claim that there is a difference in the frequency of eating out of various racial groups. 
